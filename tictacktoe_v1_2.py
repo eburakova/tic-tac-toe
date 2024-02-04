@@ -114,22 +114,22 @@ def make_turn():
                 turn = int(input(
                 "Player 1 (X): Choose a cell and enter its number: "))
             except ValueError:
-                pass
-            if turn in available_pos_label:
-                 turn_valid = True
+                continue
+            if isinstance(turn, int) and turn in available_pos_label:
                  user_record[0].append(turn)
                  available_pos_label.remove(turn)
+                 turn_valid = True
         else:
         # means it is the second player's turn
             try:
                 turn = int(input(
                 "Player 2 (O): Choose a cell and enter its number: "))
             except ValueError:
-                pass
-            if turn.isinstance(int) in available_pos_label:
-                 turn_valid = True
+                continue
+            if isinstance(turn, int) and turn in available_pos_label:
                  user_record[1].append(turn)
                  available_pos_label.remove(turn)
+                 turn_valid = True
 
 def is_game_over():
     """Checks the win and tie conditions
