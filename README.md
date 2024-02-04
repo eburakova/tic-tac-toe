@@ -1,5 +1,6 @@
 # tic-tac-toe
-A challenge that concludes our very first week of the Data science bootcamp at neue fische
+A challenge that concludes our very first week of the Data science bootcamp @ [neue fische](https://github.com/neuefische)
+
 Developed by [me](https://github.com/eburakova) and [ddotplus](https://github.com/ddotplus)
 
 ## Builds
