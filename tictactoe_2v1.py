@@ -1,3 +1,16 @@
+def set_symbols():
+    default = ['\033[1mX\033[0;0m', '\033[1mO\033[0;0m'] # bold X and O as default
+    for i in range(2): # 2 players
+        while len(symbols[i]) > 1: 
+            symbols[i] = input(f'Player {i+1}: enter your symbol (default: \033[1m{symbols[i]}\033[0;0m): ')
+            if len(symbols[i]) > 1:
+                print('Please, only enter a single symbol')
+                break
+            if not symbols[i]: # if the string is empty
+                print('Setting to default')
+                symbols[i] = default[i] 
+                break
+
 def build_empty_field(field_size):
     """Initialize the play field - visual only
       Parameters: 
@@ -151,12 +164,14 @@ def is_game_over():
 if __name__ == "__main__":
     
     print('This is a game of Tic-Tac-Toe')
+    symbols = ['XX', 'OO']
     field_size = int(input('Chose field size (1-31): '))   # NxN
     user_record = [[], []]       # list of lists with the turn record
     win_line = []                # list of lists, win conditions that are still possible
     field_pos_label = []         # position label for whole play field
     available_pos_label = []     # position label for empty spot
     game_over = False            # flag for the end of the game
+    symbols = ['X ', 'O ']
 
     ## initialization of the field
     field = build_empty_field(field_size)
@@ -171,7 +186,7 @@ if __name__ == "__main__":
             symbolX = '\033[1mX\033[0;0m' # bold X for player 1 as default
             break
     
-    symbolO = 'OO' # placeholder
+    symbolO = 'O ' # placeholder
     while len(symbolO) > 1 or symbolO == 'O':
         symbolO = input('Player 2: enter your symbol (default: \033[1mO\033[0;0m):')
         if not symbolO: # if the string is empty
