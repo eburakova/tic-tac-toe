@@ -54,12 +54,12 @@ def write_field(field, turn_history):
     """
     for pos_X in turn_history[0]:
         row, col = convert_positions(pos_X, field_size)
-        field = insert_symbol_into_field(field, '❌', row, col)
+        field = insert_symbol_into_field(field, symbolX, row, col)
     # turn history of "O"s is shorter by one every second turn, 
     # hence can not use `zip`
     for pos_O in turn_history[1]:
         row, col = convert_positions(pos_O, field_size)
-        field = insert_symbol_into_field(field, '⭕️', row, col)
+        field = insert_symbol_into_field(field, symbolO, row, col)
     return field
 
 def init_field(field_size_n, user_history=None):
@@ -137,10 +137,10 @@ def is_game_over():
     """
     for condition in win_line:
         if set(condition).issubset(set(user_record[0])):
-            print('🐍🐍 ❌ has won! 🐍🐍')
+            print(f'🐍🐍 {symbolX} has won! 🐍🐍')
             return True
         elif set(condition).issubset(set(user_record[1])):
-            print('🐍🐍 ⭕️ has won! 🐍🐍')
+            print(f'🐍🐍 {symbolO} has won! 🐍🐍')
             return True
     if len(available_pos_label) == 0:
         print('There are no more free cells! It is a tie!')
@@ -158,10 +158,28 @@ if __name__ == "__main__":
     available_pos_label = []     # position label for empty spot
     game_over = False            # flag for the end of the game
 
-    ## game starts
+    ## initialization of the field
     field = build_empty_field(field_size)
     win_line, available_pos_label = init_field(field_size, user_record)
 
+    # setting symbols for each player
+    symbolX = 'XX' # placeholder
+    while len(symbolX) > 1 or symbolX == 'X':
+        symbolX = input('Player 1: enter your symbol (default: \033[1mX\033[0;0m): ')
+        if not symbolX: # if the string is empty
+            print('Setting to default')
+            symbolX = '\033[1mX\033[0;0m' # bold X for player 1 as default
+            break
+    
+    symbolO = 'OO' # placeholder
+    while len(symbolO) > 1 or symbolO == 'O':
+        symbolO = input('Player 2: enter your symbol (default: \033[1mO\033[0;0m):')
+        if not symbolO: # if the string is empty
+            print('Setting to default')
+            symbolO = '\033[1mO\033[0;0m' # bold X for player 1 as default
+            break
+
+    # game starts
     while not game_over:
         print(field)
         if len(user_record[0]) == len(user_record[1]):
