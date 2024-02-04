@@ -13,6 +13,10 @@ Written by [eburakova](https://github.com/eburakova).
 
 **Demo**
 
+https://github.com/eburakova/tic-tac-toe/assets/132762399/7f35ce1b-72ef-456f-8035-924fd32c6928
+
+
+
 <img width="372" alt="image" src="https://github.com/eburakova/tic-tac-toe/assets/132762399/27064d8a-cd84-48fa-a3b1-d4c6e0051580">
 
 ### tictactoe1v1.py 
