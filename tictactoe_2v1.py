@@ -7,6 +7,9 @@ def is_utf8(symbol):
         return True
     
 def set_symbols():
+    """Takes custom symbols for X and O from the user input. 
+    Empty input sets the global variable `symbols` to the default (bold X and O)"""
+    
     default = [' \033[1mX\033[0;0m ', ' \033[1mO\033[0;0m '] # bold X and O as default
     for i in range(2): # 2 players
         while len(symbols[i]) > 1: 
@@ -19,10 +22,8 @@ def set_symbols():
                 symbols[i] = default[i] 
                 break
         if is_utf8(symbols[i]): # which fit into one column
-            symbols[i] = symbols[i].center(3, ' ')
-            # else don't doo anything-. 
-
-    
+            symbols[i] = symbols[i].center(3, ' ') # pad them with spaces around the symbol
+        # else don't doo anything because the emojis are large and don't need padding 
 
 def build_empty_field(field_size):
     """Initialize the play field - visual only
@@ -184,7 +185,6 @@ if __name__ == "__main__":
     field_pos_label = []         # position label for whole play field
     available_pos_label = []     # position label for empty spot
     game_over = False            # flag for the end of the game
-    symbols = [' X ', ' O ']
 
     ## initialization of the field
     field = build_empty_field(field_size)
