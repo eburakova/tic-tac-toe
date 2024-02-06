@@ -23,6 +23,8 @@ def set_symbols():
                 break
         if is_utf8(symbols[i]): # which fit into one column
             symbols[i] = symbols[i].center(3, ' ') # pad them with spaces around the symbol
+        else: 
+            symbols[i] = symbols[i].rjust(2, ' ')
         # else don't doo anything because the emojis are large and don't need padding 
 
 def build_empty_field(field_size):
@@ -63,10 +65,9 @@ def convert_positions(n, field_size):
 def insert_symbol_into_field(field, symbol, row, col):
     _ = field.splitlines()
     new_row = _[row*2+1].split('║')
-    new_row[col+1]  = f' {symbol}'
+    new_row[col+1]  = f'{symbol}'
     new_row = '║'.join(new_row)
     _[row*2+1] = new_row
-    # print('\n'.join(_))
     field = '\n'.join(_)
     return field
 
@@ -119,12 +120,12 @@ def init_field(field_size_n, user_history=None):
                                    - set(user_record[0])
                                    - set(user_record[1]))
     win_line = []
-    tmp = list(range(field_size))
+    # tmp = list(range(field_size))
     for i in range(field_size):
-        win_line.append([1+x+i*field_size for x in tmp])
-        win_line.append([1+x*field_size+i for x in tmp])
-    win_line.append([1+x*field_size+x for x in tmp])
-    win_line.append([(1+x)*field_size-x for x in tmp])
+        win_line.append([1+x+i*field_size for x in range(field_size)])
+        win_line.append([1+x*field_size+i for x in range(field_size)])
+    win_line.append([1+x*field_size+x for x in range(field_size)])
+    win_line.append([(1+x)*field_size-x for x in range(field_size)])
     # return user_record, win_line, available_pos_label
     return win_line, available_pos_label
 
